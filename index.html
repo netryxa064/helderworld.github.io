@@ -1,0 +1,184 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FoxCraft - Покупка доната</title>
+<link href="style/bootstrap.css" rel="stylesheet">
+<link href="style/site.min.css" rel="stylesheet">
+<link href="style/style.css" rel="stylesheet">
+<link href="style/preloader.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	   	<script type="text/javascript">
+	window.mcdCallback = function(previes){
+		//alert('Look at the console of your browser!');
+		console.log(previes);
+		
+		// Выводим список привилегий
+		var html = '';
+		for (var i = 0; i < previes.length; i++){
+			var item = previes[i] ;
+
+			// На каждую привилегию навешиваем событие, срабатывающее при нажатии мышкой. Внутри <div></div> может быть что угодно - картинка или тег.
+			html += '<option value="' + item.previ_id + '">' + item.title + ' - ' + item.price + ' Рублей</option>';
+		}
+		
+		document.getElementById('groups').innerHTML = html;
+		
+		
+	}
+
+	window.mcdOnClick = function(_this){
+		
+		var previ_id = document.getElementById("groups").value;
+		var nickname = document.getElementById("nickname").value;
+			
+		// Производим перенаправление в магазин. Для этого в функцию отдаём номер привилегии
+		
+		mcdApi.setNickname(nickname);
+		mcdApi.buyPreviNative(previ_id);
+	};
+
+	</script>
+<style>
+   body {
+        background-image: url('style/sexyav.png');
+        background-position: center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        background-attachment: fixed;
+    }
+	.logo {
+		background: linear-gradient(90deg, #ADFF2F, #ADFF2F 100%, #ADFF2F);
+		-webkit-background-clip: text;
+		text-shadow: 0 0 7px #ADFF2F;
+		-webkit-text-fill-color: transparent;
+		color: #80b493;
+		font-weight: bold;
+    }
+    </style></head>
+<body>
+<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+<div class="container">
+<a class="navbar-brand" href="index.html"><span class="logo">Fox</span><strong>Craft</strong></a>
+<div class="collapse navbar-collapse" id="navbarColor01">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item"><a href="index.html" class="nav-link"><i class="fa fa-home"></i> Главная</a></li>
+<li class="nav-item"><a href="https://vk.com/my_foxkeys" class="nav-link"><i class="fa fa-send"></i> Контакты</a></li>
+</ul>
+<span class="navbar-text">
+<span class="badge badge-danger">Онлайн: <b>Загрузка...</b></span>
+<span class="badge badge-primary" onclick="prompt('Скопируйте наш IP адрес и вставьте в ваш клиент:','123.123.413:25565'); return false;">IP: 123.123.413:25565</span>
+<a href="хз" target="_blank"><img class="vk" style="margin-top: -3px;" width="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAMAAADVRocKAAAAq1BMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Nr6iZAAAAOHRSTlMAyseXw567iK4TA5OBX8C0jhf82qQ8MAnz6+bfbtPPfWQ5IA90U/CFeEcrJhz3vberaE41iVZYQARqO9IAAAMhSURBVGje3djpcqJAFIbhI2gEBY0binvc10ncku/+r2zUykAvOKQrnB/J8y+p0jdNNykOpJgc3/3xod+frVYjzysWi8vz803Zvivbhdj1p/vvnq/Oy6LnjWZ9P6D/aBWG+LaGM29TIn+AjHRXCYkXCxnqXUgxQ8ZsktjI3FOJYgUwyFFkBBbV6HSCSZ/uSl1w2d0DfbBx7gsIIWBYwhyMytdABYwWRKU6OAXUAqsljcDKIRusqlQAq1f+QBOsnvgDb2D1hxywqvAHqmCV//EBi54g+sUBqzxet4Lg1Doeytb3Ar2hZeUrlbzVQMR6IdERin2n01mEi309PdDcUqQ1wKcXevyk2VhvJzXXdaftqbubfFRSAhsSTKNVFXZSwEdMmThOakApFkhUxj+LGgkO4jfIfPUBNQ/ZlARufFE9EvSBR1evkRJQllCI/y0mTxNDks2RFoBLgl18uJIDayXQTQ/YyUtYiGPXKjpCJFshPQBpO118qte079EXMEFaQF+ClxQYRR+XDVMD+hIojAJ6dUOSJRICFiT6QTo+DtjKJIykQA5pS6jgZi+eriJuOiU5EH454JCohptQ/LZz0g47+HIAgX73D7Sdf1ZHeYOAcn82AdjqvlRJEsAkgHdt9Sf5hlW/v9Q1Cej7d/BJsvVJXaRZADYZacE0gIAMlAbmgZ5JoA3zAIomBRvmAWxMCoOHgTyQxUWa9swDaJoU3IZ5AGOjNQzMA3gxOkoD88B+8vgPTig0jAMIaw/urHzHaev7EBoH0E1eQxlAwyXVtm4cQOcjKbC/n2N9DWs98AdpZqQJcDdMXJr5AFJpkWIcfVzTNQjE7IAko/hNgco3CIicsbilb/GYqh7XlkFA1skVRn3/Mr/y6oiEFxJtBtlPmbnlsvjp7Ogz2itYWT/+VUKe/XXOL3jjxb2CX/Bak/3Nrw0RQ6AMVlUag1WTJmA1JgrBySWGTVCmyS0Y3Ue5PBiIs+QJbPrRCMqjEQ/RPLbRswZYXLSnpaw3QHBaIGs+SXZPGe+vPn2NM9zqulciXfswRCZ63sPRbjN6s3LfU32WL85faRIcY07qgvUAAAAASUVORK5CYII="></a>
+</span>
+</div>
+</div>
+</nav>
+<div style="margin-top: 15px;"></div><style>
+   .nav-tabs>li>a {
+        color: #555;
+   }
+   .nav-tabs>li>a:hover {
+        color: #555;
+   }
+</style>
+<div class="container" style="margin-top: 1em;">
+<center>
+
+<img src="style/Untitled-1.png" class="img-fluid">
+</center>
+<br>
+<div>
+<div>
+<div class="card card-body">
+<div class="row">
+<div class="col-md-6">
+<div class="tab-content">
+<div role="tabpanel" class="tab-pane active" id="1">
+<div class="alert alert-info">
+<center>
+<strong>ВНИМАНИЕ!</strong> Весь донат продается <strong>навсегда</strong> и <strong>остаётся после вайпов</strong><br />
+</center>
+</div>
+<script type="text/javascript" src="https://mcdonate.ru/api/mcd_script.js?server_id=292209&callback=mcdCallback"></script>
+<div class="panel panel-default">
+<div class="panel-body">
+<div class="form-group has-feedback">
+<label for="username" class="control-label"><i class="fa fa-user" aria-hidden="true"></i> Введите ваш ник:</label>
+  <input type="text" class="form-control gray" id="nickname" name="nickname" placeholder="Введите Ваш ник" required="required"> </div>
+<div class="form-group">
+<label for="selid" class="control-label"><i class="fa fa-diamond" aria-hidden="true"></i> Выберите товар:</label>
+<select name="sum" class="form-control gray" id="groups" required></select>
+</div>
+<button onclick="window.mcdOnClick(this);" type="submit" id="buy_group" name="submit" class="btn btn-warning" type="submit" style="width: 100%">Купить</button>
+<div class="form-group"></div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+
+<div class="col-md-6">
+                     <center>
+                        <div class="alert alert-success">
+                           <h5>ХОЧЕШЬ ПОЛУЧИТЬ ОПКУ НА СЕРВЕРЕ?<br><small>ГРИФЕР ЗА <b>1000</b> рублей</small></h5>
+                        </div>
+						                        <p class="text-center"><b>Осталось до завершения акции:</b></p>
+                        <div class="row">
+                           <!-- <div class="col-md-3">
+                              <div class="card">
+                                <div class="card-block">
+                                  <h5 class="one text-danger"></h5> Дней
+                                </div>
+                              </div>
+                              </div> -->
+                           <div class="col-md-4">
+                              <div class="card">
+                                 <div class="card-block">
+                                    <h5 class="second text-danger"></h5>
+                                    Часов
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="card">
+                                 <div class="card-block">
+                                    <h5 class="third text-danger"></h5>
+                                    Минут
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="card">
+                                 <div class="card-block">
+                                    <h5 class="four text-danger"></h5>
+                                    Секунд
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <br>
+                        <div class="alert alert-danger" style="font-size: 17px;">
+                           <div class="flash animated infinite">СЕЙЧАС ИДУТ СКИДКИ: <b style="color:yellow;">99</b> %</div>
+                        </div>
+                     </center>
+                  </div>
+
+      <script src="templates/styles/js/slim.min.js"></script>
+      <script src="templates/styles/js/popper.min.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+      <script src="templates/styles/js/jquery.countdown.min.js"></script>
+      <script src="templates/styles/js/bootstrap.min.js"></script>
+      <script src="templates/styles/js/fontawesome.js"></script>
+
+
+
+</div>
+<br>
+<script src="https://daruse.ru/assets/js/snowfall.js"></script>
+<script type="text/javascript">
+   $(document).snowfall();
+</script>
+</body></html>
